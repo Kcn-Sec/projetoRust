@@ -20,5 +20,6 @@ fn exibir_menu() {}
 fn main() {
     // impl do menu
     exibir_menu();
-    println!("Testando git carai");    
+    println!("Testando git carai");
+    println!("mais print");
 }
