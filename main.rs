@@ -22,4 +22,5 @@ fn main() {
     exibir_menu();
     println!("Testando git carai");
     println!("mais print");
+    println!("AAAAAAAAAAAAAAAAAAAAA");
 }
