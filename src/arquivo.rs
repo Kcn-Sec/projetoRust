@@ -1,9 +1,9 @@
-// Estrutura que representa um arquivo.
+// struct que representa o arquivo
 pub struct Arquivo {
     pub nome: String,
     pub tamanho: u64,
-    // Permissoes do dono, do grupo e dos outros.
-    pub permissoes: (Permissao, Permissao, Permissao),
+    // Permissoes do dono, do grupo e dos outros
+    pub permissoes: (bool, bool, bool),
     pub uid_dono: u16,
     pub gid_grupo: u16,
 }
