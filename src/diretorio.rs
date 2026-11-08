@@ -4,7 +4,6 @@ use crate::permissao::Permissao;
 pub struct Diretorio {
     pub nome: String,
     pub arquivos: Vec<Arquivo>,
-    // Permissoes do dono, do grupo e dos outros.
     pub permissoes: (Permissao, Permissao, Permissao),
     pub uid_dono: u16,
 }

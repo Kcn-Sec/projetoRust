@@ -1,13 +1,12 @@
-// Estrutura que representa um grupo.
-pub struct Grupo {
+//estrutura grupo
+pub struct Grupo{
     pub nome: String,
     pub gid: u16,
-    // Vetor armazenando os UIDs dos membros do grupo.
-    pub membros_uids: Vec<u16>,
+    pub membros_uids: Vec<u16>, //esse eh o vetor que armazena as uids 
 }
 
-impl Grupo {
-    // Aqui vai a implementação de Grupo::new
+    //construtor
+    impl Grupo {
     pub fn new(nome: String, gid: u16) -> Grupo {
         Grupo {
             nome,

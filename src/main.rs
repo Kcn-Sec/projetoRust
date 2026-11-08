@@ -1,11 +1,10 @@
-// declaracao dos modulos
+mod permissao;
 mod arquivo;
 mod diretorio;
 mod grupo;
-mod permissao;
 mod usuario;
-
-// usando varios pra nao precisar usar prefixo depois
+mod menu;
+ 
 use arquivo::Arquivo;
 use diretorio::Diretorio;
 use grupo::Grupo;
@@ -227,3 +226,4 @@ fn main() {
         }
     }
 }
+ 
