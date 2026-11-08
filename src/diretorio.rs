@@ -33,5 +33,8 @@ impl Diretorio {
 
     // Aqui vai a implementação de Diretorio::listar_conteudo
     pub fn listar_conteudo(&self) {
+        for arquivo in &self.arquivos {
+            println!("{}", arquivo.nome);
+        }
     }
 }
