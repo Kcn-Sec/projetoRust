@@ -10,14 +10,21 @@ pub struct Usuario {
 impl Usuario {
     // Aqui vai a implementação de Usuario::new
     pub fn new(nome: String, uid: u16) -> Usuario {
+        Usuario {
+            nome,
+            uid,
+            grupos_ids: Vec::new()
+        }
     }
 
     // Aqui vai a implementação de Usuario::adiciona_grupo
     pub fn adiciona_grupo(&mut self, gid: u16) {
+        self.grupos_ids.push(gid);
     }
 
     // Aqui vai a implementação de Usuario::remove_grupo
     pub fn remove_grupo(&mut self, gid: u16) {
+        self.grupos_ids.retain(|&g| g != gid);
     }
 
     // Aqui vai a implementação de Usuario::listar_grupos

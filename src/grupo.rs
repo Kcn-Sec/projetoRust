@@ -9,8 +9,12 @@ pub struct Grupo {
 impl Grupo {
     // Aqui vai a implementação de Grupo::new
     pub fn new(nome: String, gid: u16) -> Grupo {
+        Grupo {
+            nome,
+            gid,
+            membros_uids: Vec::new(),
     }
-
+    }
     // Aqui vai a implementação de Grupo::adiciona_membro
     pub fn adiciona_membro(&mut self, uid: u16) {
     }

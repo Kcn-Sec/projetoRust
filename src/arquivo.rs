@@ -1,3 +1,4 @@
+use crate::permissao::Permissao;
 // struct que representa o arquivo
 pub struct Arquivo {
     pub nome: String,
@@ -11,6 +12,13 @@ pub struct Arquivo {
 impl Arquivo {
     // Aqui vai a implementação de Arquivo::new
     pub fn new(nome: String, tamanho: u64, uid: u16, gid: u16) -> Arquivo {
+        Arquivo {
+            nome,
+            tamanho,
+            permissoes: (true, true, false),
+            uid_dono: uid,
+            gid_grupo: gid,
+        }
     }
 
     // Aqui vai a implementação de Arquivo::alterar_permissao
