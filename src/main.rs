@@ -30,6 +30,8 @@ fn exibir_menu() {
     println!("6 - Adicionar usuário a um grupo");
     println!("7 - Criar diretório");
     println!("8 - Listar diretórios");
+    println!("9 - Criar arquivo em diretório");
+    println!("10 - Ver stat de arquivo");
     println!("0 - Sair");
     println!("Opção:");
 }
@@ -111,6 +113,38 @@ fn main() {
             for d in &diretorios {
                 println!("Diretorio: {}", d.nome);
                 d.listar_conteudo();
+            }
+        }
+        "9" => {
+            println!("Nome do diretório:");
+            let dir = ler();
+            match diretorios.iter_mut().find(|d| d.nome == dir) {
+                Some(d) => {
+                    println!("Nome do arquivo:");
+                    let nome = ler();
+                    println!("Tamanho em bytes:");
+                    let tamanho: u64 = ler().parse().unwrap();
+                    println!("UID do dono:");
+                    let uid: u16 = ler().parse().unwrap();
+                    println!("GID do grupo:");
+                    let gid: u16 = ler().parse().unwrap();
+                    d.adiciona_arquivo(Arquivo::new(nome, tamanho, uid, gid));
+                    println!("Arquivo criado!");
+                }
+                None => println!("Diretório não encontrado!"),
+            }
+        }
+        "10" => {
+            println!("Nome do diretório:");
+            let dir = ler();
+            println!("Nome do arquivo:");
+            let arquivo = ler();
+            match diretorios.iter().find(|d| d.nome == dir) {
+                Some(d) => match d.arquivos.iter().find(|a| a.nome == arquivo) {
+                    Some(a) => a.stat(),
+                    None => println!("Arquivo não encontrado!"),
+                },
+                None => println!("Diretório não encontrado!"),
             }
         }
             "0" => break,
