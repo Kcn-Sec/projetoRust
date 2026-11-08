@@ -28,6 +28,8 @@ fn exibir_menu() {
     println!("4 - Criar grupo");
     println!("5 - Listar grupos");
     println!("6 - Adicionar usuário a um grupo");
+    println!("7 - Criar diretório");
+    println!("8 - Listar diretórios");
     println!("0 - Sair");
     println!("Opção:");
 }
@@ -35,6 +37,7 @@ fn exibir_menu() {
 fn main() {
     let mut usuarios: Vec<Usuario> = Vec::new();
     let mut grupos: Vec<Grupo> = Vec::new();
+    let mut diretorios: Vec<Diretorio> = Vec::new();
     // impl do menu
     loop{ 
     exibir_menu();
@@ -89,6 +92,25 @@ fn main() {
                     println!("Usuário adicionado ao grupo!");
                 }
                 _ => println!("Usuário ou grupo não encontrado"),
+            }
+        }
+        "7" => {
+            println!("Nome do diretório:");
+            let nome = ler();
+            println!("UID do dono:");
+            let uid: u16 = ler().parse().unwrap();
+            let perms = (
+                Permissao::new(true, true, true),
+                Permissao::new(true, false, true),
+                Permissao::new(true, false, true),
+                );
+                diretorios.push(Diretorio::new(nome, perms, uid));
+                println!("Diretorio criado!");
+        }
+        "8" => {
+            for d in &diretorios {
+                println!("Diretorio: {}", d.nome);
+                d.listar_conteudo();
             }
         }
             "0" => break,
