@@ -1,15 +1,14 @@
 // declaracao dos modulos
+mod permissao;
 mod arquivo;
 mod diretorio;
 mod grupo;
-mod permissao;
 mod usuario;
 
 // usando varios pra nao precisar usar prefixo depois
 use arquivo::Arquivo;
 use diretorio::Diretorio;
 use grupo::Grupo;
-use permissao::Permissao;
 use usuario::Usuario;
 
 
