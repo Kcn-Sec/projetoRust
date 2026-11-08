@@ -31,6 +31,6 @@ impl Usuario {
     pub fn listar_grupos(&self) {
         for gid in &self.grupos_ids {
             println!("Grupo: {}", gid);
-    }
+    } 
     }
 }

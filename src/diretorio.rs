@@ -23,10 +23,12 @@ impl Diretorio {
 
     // Aqui vai a implementação de Diretorio::adiciona_arquivo
     pub fn adiciona_arquivo(&mut self, arquivo: Arquivo) {
+        self.arquivos.push(arquivo);
     }
 
     // Aqui vai a implementação de Diretorio::remove_arquivo
     pub fn remove_arquivo(&mut self, nome_arquivo: String) {
+        self.arquivos.retain(|a| a.nome != nome_arquivo);
     }
 
     // Aqui vai a implementação de Diretorio::listar_conteudo
