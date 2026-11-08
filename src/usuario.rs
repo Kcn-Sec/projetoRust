@@ -29,5 +29,8 @@ impl Usuario {
 
     // Aqui vai a implementação de Usuario::listar_grupos
     pub fn listar_grupos(&self) {
+        for gid in &self.grupos_ids {
+            println!("Grupo: {}", gid);
+    }
     }
 }
