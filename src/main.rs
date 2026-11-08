@@ -18,7 +18,9 @@ fn ler() -> String {
     io::stdin().read_line(&mut texto).unwrap();
     texto.trim().to_string()
 }
-
+fn de_octal(n: u32) -> Permissao {
+    Permissao::new(n >=4, n % 4 >= 2, n % 2 == 1)
+}
 // impl menu terminal
 fn exibir_menu() {
     println!("Menu:");
@@ -32,6 +34,8 @@ fn exibir_menu() {
     println!("8 - Listar diretórios");
     println!("9 - Criar arquivo em diretório");
     println!("10 - Ver stat de arquivo");
+    println!("11 - Apagar arquivo");
+    println!("12 - Alterar permissão de arquivos");
     println!("0 - Sair");
     println!("Opção:");
 }
@@ -147,9 +151,45 @@ fn main() {
                 None => println!("Diretório não encontrado!"),
             }
         }
-            "0" => break,
-            _ => println!("Opção inválida"),
+        "11" => {
+            println!("Nome do diretório:");
+            let dir = ler();
+            println!("Nome do arquivo a apagar:");
+            let arquivo = ler();
+            match diretorios.iter_mut().find(|d| d.nome == dir) {
+                Some(d) => {
+                    d.remove_arquivo(arquivo);
+                    println!("Arquivo apagado!");
+                }
+                None => println!("Diretório não encontrado!"),
+            }
         }
+        "12" => {
+            println!("Nome do diretório:");
+            let dir = ler();
+            println!("Nome do arquivo:");
+            let arquivo = ler();
+            println!("Novas permissões em octal (ex: 755):");
+            let oct = ler();
+            let d: Vec<u32> = oct.chars().filter_map(|c| c.to_digit(8)).collect();
+            if d.len() != 3 {
+                println!("Use 3 dígitos de 0 a 7");
+            } else {
+                let novas = (de_octal(d[0]), de_octal(d[1]), de_octal(d[2]));
+                match diretorios.iter_mut().find(|x| x.nome == dir) {
+                    Some(x) => match x.arquivos.iter_mut().find(|a| a.nome == arquivo) {
+                        Some(a) => {
+                            a.alterar_permissao(novas);
+                            println!("Permissão alterada!");
+                        }
+                        None => println!("Arquivo não encontrado!"),
+                    },
+                    None => println!("Diretório não encontrado!"),
+                }
+            }
+        }
+        "0" => break,
+        _ => println!("Opção inválida"),
     }
-
+    }
 }
