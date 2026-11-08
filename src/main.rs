@@ -27,6 +27,7 @@ fn exibir_menu() {
     println!("3 - Apagar Usuário");
     println!("4 - Criar grupo");
     println!("5 - Listar grupos");
+    println!("6 - Adicionar usuário a um grupo");
     println!("0 - Sair");
     println!("Opção:");
 }
@@ -70,6 +71,24 @@ fn main() {
             for g in &grupos {
                 println!("{} (gid {})", g.nome, g.gid);
                 g.listar_membros();
+            }
+        }
+        "6" => {
+            println!("UID do usuário:");
+            let uid: u16 = ler().parse().unwrap();
+            println!("GID do grupo:");
+            let gid: u16 = ler().parse().unwrap();
+            
+            let usuario = usuarios.iter_mut().find(|u| u.uid == uid);
+            let grupo = grupos.iter_mut().find(|g| g.gid == gid);
+
+            match (usuario, grupo) {
+                (Some(u), Some(g)) => {
+                    u.adiciona_grupo(gid);
+                    g.adiciona_membro(uid);
+                    println!("Usuário adicionado ao grupo!");
+                }
+                _ => println!("Usuário ou grupo não encontrado"),
             }
         }
             "0" => break,
