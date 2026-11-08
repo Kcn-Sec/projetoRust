@@ -24,7 +24,7 @@ impl Diretorio{
         }
     // adicionar arquivo
     pub fn add_arquivo(&mut self, arquivo: Arquivo) {
-        self.arquivos.push(arquivo);
+        self.arquivos.push(arquivo); //push adiciona um arquivo novo no final do vetor
     }
 
     //listar
