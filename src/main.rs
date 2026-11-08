@@ -11,14 +11,46 @@ use diretorio::Diretorio;
 use grupo::Grupo;
 use permissao::Permissao;
 use usuario::Usuario;
+use std::io;
 
-
+fn ler() -> String {
+    let mut texto = String::new();
+    io::stdin().read_line(&mut texto).unwrap();
+    texto.trim().to_string()
+}
 
 // impl menu terminal
-fn exibir_menu() {}
+fn exibir_menu() {
+    println!("Menu:");
+    println!("1 - Criar usuário");
+    println!("2 - Listar Usuários");
+    println!("0 - Sair");
+    println!("Opção:");
+}
 
 fn main() {
+    let mut usuarios: Vec<Usuario> = Vec::new();
     // impl do menu
+    loop{ 
     exibir_menu();
-    
+    let opcao = ler();
+        match opcao.as_str(){
+        "1" => {
+            println!("Nome:");
+            let nome = ler();
+            println!("UID:");
+            let uid: u16 = ler().parse().unwrap();
+            usuarios.push(Usuario::new(nome, uid));
+            println!("Usuario criado!");
+        }
+        "2" => {
+            for u in &usuarios {
+                println!("{} (uid {})", u.nome, u.uid);
+            }
+        }
+            "0" => break,
+            _ => println!("Opção inválida"),
+        }
+    }
+
 }
