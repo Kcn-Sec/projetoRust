@@ -25,12 +25,15 @@ fn exibir_menu() {
     println!("1 - Criar usuário");
     println!("2 - Listar Usuários");
     println!("3 - Apagar Usuário");
+    println!("4 - Criar grupo");
+    println!("5 - Listar grupos");
     println!("0 - Sair");
     println!("Opção:");
 }
 
 fn main() {
     let mut usuarios: Vec<Usuario> = Vec::new();
+    let mut grupos: Vec<Grupo> = Vec::new();
     // impl do menu
     loop{ 
     exibir_menu();
@@ -54,6 +57,20 @@ fn main() {
             let uid: u16 = ler().parse().unwrap();
             usuarios.retain(|u| u.uid != uid);
             println!("Usuario apagado");
+        }
+        "4" => {
+            println!("Nome do grupo:");
+            let nome = ler();
+            println!("GID:");
+            let gid: u16 = ler().parse().unwrap();
+            grupos.push(Grupo::new(nome, gid));
+            println!("Grupo criado!");
+        }
+        "5" => {
+            for g in &grupos {
+                println!("{} (gid {})", g.nome, g.gid);
+                g.listar_membros();
+            }
         }
             "0" => break,
             _ => println!("Opção inválida"),
