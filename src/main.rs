@@ -24,6 +24,7 @@ fn exibir_menu() {
     println!("Menu:");
     println!("1 - Criar usuário");
     println!("2 - Listar Usuários");
+    println!("3 - Apagar Usuário");
     println!("0 - Sair");
     println!("Opção:");
 }
@@ -47,6 +48,12 @@ fn main() {
             for u in &usuarios {
                 println!("{} (uid {})", u.nome, u.uid);
             }
+        }
+        "3" => {
+            println!("UID do usuario a apagar:");
+            let uid: u16 = ler().parse().unwrap();
+            usuarios.retain(|u| u.uid != uid);
+            println!("Usuario apagado");
         }
             "0" => break,
             _ => println!("Opção inválida"),
