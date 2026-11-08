@@ -37,6 +37,8 @@ fn exibir_menu() {
     println!("11 - Apagar arquivo");
     println!("12 - Alterar permissão de arquivos");
     println!("13 - Tirar usuário de grupo");
+    println!("14 - Apagar grupo");
+    println!("15 - Apagar diretório");
     println!("0 - Sair");
     println!("Opção:");
 }
@@ -207,6 +209,18 @@ fn main() {
                     }
                     _ => println!("Usuário ou grupo não encontrado!"),
                 }
+            }
+            "14" => {
+                println!("GID do grupo a apagar:");
+                let gid: u16 = ler().parse().unwrap();
+                grupos.retain(|g| g.gid != gid);
+                println!("Grupo apagado!");
+            }
+            "15" => {
+                println!("Nome do diretório a apagar:");
+                let nome = ler();
+                diretorios.retain(|d| d.nome != nome);
+                println!("Diretório apagado!");
             }
             "0" => break,
             _ => println!("Opção inválida"),
