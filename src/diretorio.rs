@@ -1,26 +1,39 @@
-// Estrutura que representa um diretorio.
-pub struct Diretorio {
+use crate::arquivo::Arquivo;
+use crate::permissao::Permissao;
+
+pub struct Diretorio{
     pub nome: String,
     pub arquivos: Vec<Arquivo>,
-    // Permissoes do dono, do grupo e dos outros.
     pub permissoes: (Permissao, Permissao, Permissao),
     pub uid_dono: u16,
 }
 
-impl Diretorio {
-    // Aqui vai a implementação de Diretorio::new
-    pub fn new(nome: String, permissoes: (Permissao, Permissao, Permissao), uid_dono: u16) -> Diretorio {
+// o constructor eh muito bom nesses casos porque ele cria um diretorio novo e vai preenchendo os atributos com os valores recebidos
+impl Diretorio{
+        pub fn new(
+            nome: String,
+            permissoes: (Permissao, Permissao, Permissao),
+            uid_dono: u16
+        ) -> Diretorio {
+            Diretorio{
+                nome,
+                arquivos: Vec::new(), //vetor vazio pra armazenar os arquivos do diretorio
+                permissoes,
+                uid_dono,
+            }
+        }
+    // adicionar arquivo
+    pub fn add_arquivo(&mut self, arquivo: Arquivo) {
+        self.arquivos.push(arquivo);
     }
 
-    // Aqui vai a implementação de Diretorio::adiciona_arquivo
-    pub fn adiciona_arquivo(&mut self, arquivo: Arquivo) {
-    }
+    //listar
+    pub fn listar(&self){
+        println!("Diretorio: {}", self.nome);
+        println!("Arquivos:");
 
-    // Aqui vai a implementação de Diretorio::remove_arquivo
-    pub fn remove_arquivo(&mut self, nome_arquivo: String) {
-    }
-
-    // Aqui vai a implementação de Diretorio::listar_conteudo
-    pub fn listar_conteudo(&self) {
+        for arquivo in &self.arquivos{
+            println!("{}", arquivo.nome);
+        }
     }
 }

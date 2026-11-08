@@ -5,13 +5,7 @@ mod diretorio;
 mod grupo;
 mod usuario;
 
-// usando varios pra nao precisar usar prefixo depois
-use arquivo::Arquivo;
-use diretorio::Diretorio;
-use grupo::Grupo;
-use usuario::Usuario;
-
-
+use crate::diretorio::Diretorio;
 
 // impl menu terminal
 fn exibir_menu() {}
