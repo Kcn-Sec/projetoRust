@@ -19,4 +19,10 @@ impl Permissao {
     pub fn octal(&self) -> u8 {
         (self.leitura as u8) * 4 + (self.escrita as u8) * 2 + (self.execucao as u8) * 1
     }
+    pub fn rwx(&self) -> String{
+        let r = if self.leitura {'r'} else {'-'};
+        let w = if self.escrita {'w'} else {'-'};
+        let x = if self.execucao {'x'} else {'-'};
+        format!("{}{}{}", r, w, x)
+    }
 }
